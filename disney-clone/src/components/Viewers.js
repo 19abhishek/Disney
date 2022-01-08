@@ -26,17 +26,19 @@ function Viewers() {
 export default Viewers;
 
 const Container = styled.div`
-  margin-top: 30px;
+  margin: 3rem 0;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1rem;
 `;
 
 const Wrap = styled.div`
-  border-radius: 10px;
+  border-radius: 1rem;
   cursor: pointer;
   border: 1px solid rgba(249, 249, 249, 0.1);
   box-shadow: inset 0 0 0 1px rgba(249, 249, 249, 0.1);
+  transition: all 250ms;
+
   img {
     width: 100%;
     height: 100%;
