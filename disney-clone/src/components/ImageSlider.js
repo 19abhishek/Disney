@@ -35,11 +35,11 @@ function ImageSlider() {
 export default ImageSlider;
 
 const Carousel = styled(Slider)`
-  margin-top: 20px;
+  margin-top: 2rem;
 
   ul li button {
     &:before {
-      font-size: 10px;
+      font-size: 1rem;
       color: rgb(150, 158, 171);
     }
   }
@@ -61,12 +61,12 @@ const Wrap = styled.div`
   cursor: pointer;
 
   img {
-    border-radius: 4px;
+    border-radius: 0.4rem;
     width: 100%;
     height: 100%;
     box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,
       rgb(0 0 0 73%) 0px 16px 10px -10px;
-    border: 4px solid transparent;
+    border: 0.4rem solid transparent;
   }
 
   &:hover {

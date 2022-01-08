@@ -39,27 +39,27 @@ function Header() {
 export default Header;
 
 const Nav = styled.div`
-  height: 70px;
+  height: 7rem;
   background: #090b13;
   display: flex;
   align-items: centre;
-  padding: 0 36px;
+  padding: 0 3.6rem;
   overflow-x: hidden;
 `;
 
 const Logo = styled.img`
-  width: 80px;
+  width: 8rem;
 `;
 
 const NavMenu = styled.div`
   display: flex;
   flex: 1;
-  margin-left: 25px;
+  margin-left: 2.5rem;
   align-items: center;
   a {
     display: flex;
     align-items: center;
-    padding: 0 12px;
+    padding: 0 1.2rem;
     cursor: pointer;
 
     img {
@@ -67,18 +67,18 @@ const NavMenu = styled.div`
     }
 
     span {
-      font-size: 13px;
-      letter-spacing: 1.42px;
+      font-size: 1.3rem;
+      letter-spacing: 1.42;
       position: relative;
 
       &:after {
         content: "";
-        height: 2px;
+        height: 0.2rem;
         background: white;
         position: absolute;
         left: 0;
         right: 0;
-        bottom: -6px;
+        bottom: -0.6rem;
         opacity: 0;
         transform-origin: left right;
         transform: scaleX(0);
@@ -95,8 +95,8 @@ const NavMenu = styled.div`
 `;
 
 const UserImg = styled.img`
-  width: 48px;
-  height: 48px;
+  width: 4.8rem;
+  height: 4.8rem;
   border-radius: 50%;
   cursor: pointer;
   margin: auto;
