@@ -1,35 +1,45 @@
 import React from "react";
 import styled from "styled-components";
+import { selectMovies } from "../movie/movieSlice";
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+const API_URL =
+  "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1";
+
+const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 
 function Movies() {
+  const movies = useSelector(selectMovies);
+
+  const [movieList, setMovieList] = useState([]);
+
+  useEffect(() => {
+    const getMovie = async () => {
+      const res = await fetch(API_URL);
+      const data = await res.json();
+      setMovieList(data.results);
+    };
+    getMovie();
+  }, []);
+  console.log(movieList);
+
   return (
     <Container>
       <h4>Recommended for you</h4>
       <Content>
-        <Wrap>
-          <img src="https://images.unsplash.com/photo-1622816691848-81646fbecbf5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" />
-        </Wrap>
-        <Wrap>
-          <img src="https://images.unsplash.com/photo-1622816691848-81646fbecbf5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" />
-        </Wrap>
-        <Wrap>
-          <img src="https://images.unsplash.com/photo-1622816691848-81646fbecbf5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" />
-        </Wrap>
-        <Wrap>
-          <img src="https://images.unsplash.com/photo-1622816691848-81646fbecbf5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" />
-        </Wrap>
-        <Wrap>
-          <img src="https://images.unsplash.com/photo-1622816691848-81646fbecbf5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" />
-        </Wrap>
-        <Wrap>
-          <img src="https://images.unsplash.com/photo-1622816691848-81646fbecbf5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" />
-        </Wrap>
-        <Wrap>
-          <img src="https://images.unsplash.com/photo-1622816691848-81646fbecbf5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" />
-        </Wrap>
-        <Wrap>
-          <img src="https://images.unsplash.com/photo-1622816691848-81646fbecbf5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" />
-        </Wrap>
+        {movieList &&
+          movieList.map((movie) => (
+            <Wrap key={movie.id}>
+              <Link to={`/detail/${movie.id}`}>
+                <img
+                  src={`${IMG_PATH + movie.poster_path}`}
+                  alt={`${movie.title}`}
+                />
+              </Link>
+            </Wrap>
+          ))}
       </Content>
     </Container>
   );
