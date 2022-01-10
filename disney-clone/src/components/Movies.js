@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { selectMovies } from "../movie/movieSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { setMovies } from "../movie/movieSlice";
 
 const API_URL =
   "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1";
@@ -12,8 +13,9 @@ const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 
 function Movies() {
   const movies = useSelector(selectMovies);
+  const dispatch = useDispatch();
 
-  const [movieList, setMovieList] = useState([]);
+  const [movieList, setMovieList] = useState();
 
   useEffect(() => {
     const getMovie = async () => {
@@ -24,6 +26,15 @@ function Movies() {
     getMovie();
   }, []);
   console.log(movieList);
+  // const val = {
+  //   if (movieList === undefined) {
+  //     return null;
+  //   } else {
+  //     console.log(movieList);
+  //     dispatch(setMovies.set(movieList));
+  //   }
+  //   return null;
+  // }
 
   return (
     <Container>
