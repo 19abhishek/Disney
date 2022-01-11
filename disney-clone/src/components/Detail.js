@@ -10,12 +10,11 @@ const API_URL =
 
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 
-let bool = false;
-
 function Detail() {
   const { id } = useParams();
-  // const [currMovie, setCurrMovie] = useState();
   const movies = useSelector(selectMovies);
+  const cMovie = movies.filter((movie) => movie.id === +id);
+  const [currMovie, setCurrMovie] = useState(cMovie);
 
   // useEffect(() => {
   //   if (bool) {
@@ -38,45 +37,40 @@ function Detail() {
   // console.log(bool);
 
   // useEffect(() => {
+  //   console.log("hello");
   //   setCurrMovie(movies.filter((movie) => movie.id === +id));
-  // }, []);
+  // }, [id]);
 
-  const currMovie = movies.filter((movie) => movie.id === +id);
-
-  const { backdrop_path, original_title, overview } = currMovie;
-
-  console.log(currMovie.original_title);
+  const { backdrop_path, title, overview, release_date } = currMovie[0];
 
   return (
     <Container>
-      {/* {currMovie === undefined && <div>undefined</div>} */}
-      <div>
-        <Background>
-          <img src={`${IMG_PATH + currMovie.backdrop_path}`} />
-          {/*<img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/4F39B7E16726ECF419DD7C49E011DD95099AA20A962B0B10AA1881A70661CE45/scale?width=1440&aspectRatio=1.78&format=jpeg" />*/}
-        </Background>
-        <ImageTitle>
+      <Background>
+        <img src={`${IMG_PATH + backdrop_path}`} />
+        {/*<img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/4F39B7E16726ECF419DD7C49E011DD95099AA20A962B0B10AA1881A70661CE45/scale?width=1440&aspectRatio=1.78&format=jpeg" />*/}
+      </Background>
+      {/* <ImageTitle>
           <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78" />
-        </ImageTitle>
-        <Controls>
-          <PlayButton>
-            <img src="/images/play-icon-black.png" />
-            <span>Play</span>
-          </PlayButton>
-          <TrailerButton>
-            <img src="/images/play-icon-white.png" />
-            <span>Trailer</span>
-          </TrailerButton>
-          <AddButton>
-            <span>+</span>
-          </AddButton>
-          <GroupWatchButton>
-            <img src="/images/group-icon.png" />
-          </GroupWatchButton>
-        </Controls>
-        <SubTitle>2018 7m Family, Fantasy, Fiction</SubTitle>
-        <Description>{currMovie.overview}</Description>
-      </div>
+        </ImageTitle> */}
+      <Title>{title}</Title>
+      <Controls>
+        <PlayButton>
+          <img src="/images/play-icon-black.png" />
+          <span>Play</span>
+        </PlayButton>
+        <TrailerButton>
+          <img src="/images/play-icon-white.png" />
+          <span>Trailer</span>
+        </TrailerButton>
+        <AddButton>
+          <span>+</span>
+        </AddButton>
+        <GroupWatchButton>
+          <img src="/images/group-icon.png" />
+        </GroupWatchButton>
+      </Controls>
+      <SubTitle>{`Released on: ${release_date}`}</SubTitle>
+      <Description>{overview}</Description>
     </Container>
   );
 }
@@ -87,6 +81,8 @@ const Container = styled.div`
   min-height: calc(100vh - 7rem);
   padding: 0 calc(3.5vw + 5px);
   position: relative;
+  margin-top: 25vh;
+  overflow-y: hidden;
 `;
 
 const Background = styled.div`
@@ -102,6 +98,13 @@ const Background = styled.div`
     height: 100%;
     object-fit: cover;
   }
+`;
+
+const Title = styled.div`
+  font-size: 3.6rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
 `;
 
 const ImageTitle = styled.div`
