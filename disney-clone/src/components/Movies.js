@@ -11,9 +11,11 @@ const API_URL =
 
 const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
 
+let bool = false;
+
 function Movies() {
-  const movies = useSelector(selectMovies);
   const dispatch = useDispatch();
+  const movies = useSelector(selectMovies);
 
   const [movieList, setMovieList] = useState();
 
@@ -21,11 +23,15 @@ function Movies() {
     const getMovie = async () => {
       const res = await fetch(API_URL);
       const data = await res.json();
+      const result = data.results;
       setMovieList(data.results);
+      console.log("hi");
+      dispatch(setMovies(result));
     };
     getMovie();
   }, []);
   console.log(movieList);
+  console.log(movies);
   // const val = {
   //   if (movieList === undefined) {
   //     return null;
