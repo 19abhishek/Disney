@@ -87,7 +87,7 @@ const Container = styled.div`
 
 const Background = styled.div`
   position: fixed;
-  top: 0;
+  top: 7rem;
   bottom: 0;
   left: 0;
   right: 0;
@@ -95,7 +95,7 @@ const Background = styled.div`
   opacity: 0.9;
   img {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     object-fit: cover;
   }
 `;
