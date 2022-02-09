@@ -17,7 +17,7 @@ function Header() {
   return (
     <Nav>
       <Logo src="images/logo.svg" />
-      {!userName ? (
+      {userName ? (
         <LoginContainer>
           <Login>Login</Login>
         </LoginContainer>
@@ -65,6 +65,9 @@ const Nav = styled.div`
   align-items: centre;
   padding: 0 3.6rem;
   overflow-x: hidden;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 `;
 
 const Logo = styled.img`
